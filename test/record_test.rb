@@ -4,10 +4,6 @@ require 'cpr_client/record'
 
 class RecordTest < Minitest::Test
 
-  def setup
-    @record = init_protected_record
-  end
-
   def test_protected_address
     record = init_protected_record
     assert_equal '1', record[:beskyt]
@@ -68,7 +64,5 @@ class RecordTest < Minitest::Test
       </root>
     DATA
   end
-
-
 
 end
