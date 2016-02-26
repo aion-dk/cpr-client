@@ -35,6 +35,19 @@ module CPRClient
       Date.parse(get('FOEDDATO'))
     end
 
+    # Returns the record's address if present.
+    #
+    # The address will be a string of the fields
+    # STADR, POSTNR and POSTNR's t attribute.
+    #
+    # Fx. Boulevarden 101,1 mf, 6800 Varde
+    #
+    # @return string with address or nil
+    def address
+      values = [ get(:stadr), get(:postnr), get(:postnr, :t) ]
+      '%s, %s %s' % values if values.all?
+    end
+
     # Returns a Hash with all values of all fields.
     #
     # The default value attribute is stored with field name as key.

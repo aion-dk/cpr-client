@@ -12,6 +12,7 @@ class RecordTest < Minitest::Test
     record = init_protected_record
     assert_equal '1', record[:beskyt]
     assert record.protected?
+    assert_nil record.address
   end
 
   def test_birthday
