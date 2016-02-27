@@ -25,14 +25,14 @@ module CPRClient
     #
     # @return true if protected, false otherwise
     def protected?
-      get('BESKYT') == '1'
+      get(:beskyt) == '1'
     end
 
     # Returns the birthday as Date.
     #
     # @return Date with date of birth
     def birthday
-      Date.parse(get('FOEDDATO'))
+      Date.parse(get(:foeddato))
     end
 
     # Returns the record's address if present.
