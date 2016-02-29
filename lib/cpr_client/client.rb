@@ -15,7 +15,7 @@ module CPRClient
     def initialize(user, pass, endpoint)
       @user, @pass, @endpoint = user, pass, endpoint
       @http = HTTPClient.new(
-          agent_name: 'CPRClient/0.1',
+          agent_name: "CPRClient/#{CPRClient::VERSION}",
           default_header: { 'Content-Type' => 'text/xml' }
       )
     end
