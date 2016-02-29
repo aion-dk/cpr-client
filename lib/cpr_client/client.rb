@@ -2,6 +2,7 @@ require 'httpclient'
 require 'nokogiri'
 require 'cpr_client/record'
 require 'cpr_client/errors'
+require 'cpr_client/version'
 
 module CPRClient
 

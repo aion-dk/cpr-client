@@ -1,4 +1,7 @@
 require 'cpr_client/client'
+require 'cpr_client/record'
+require 'cpr_client/errors'
+require 'cpr_client/version'
 
 module CPRClient
 
