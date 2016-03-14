@@ -1,6 +1,7 @@
 require 'minitest/autorun'
 require 'nokogiri'
 require 'cpr_client/record'
+require 'yaml'
 
 class RecordTest < Minitest::Test
 
@@ -14,6 +15,13 @@ class RecordTest < Minitest::Test
   def test_birthday
     record = init_protected_record
     assert_equal Date.new(1961, 1, 7), record.birthday
+  end
+
+  def test_serialization
+    record = init_protected_record
+    record_copy = YAML::load(YAML::dump(record))
+    assert_equal record.fields, record_copy.fields, 'Serialized-Deserialized object does not have the same fields'
+    assert_equal record.timestamp, record_copy.timestamp, 'Serialized-Deserialized object does not have the same timestamp'
   end
 
   def test_missing_field
