@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    cpr-client (0.0.4)
+    cpr-client (0.0.5)
       httpclient (~> 2.7)
       nokogiri (~> 1.6)
 
