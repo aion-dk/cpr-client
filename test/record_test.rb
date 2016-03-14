@@ -16,6 +16,11 @@ class RecordTest < Minitest::Test
     assert_equal Date.new(1961, 1, 7), record.birthday
   end
 
+  def test_missing_field
+    record = init_protected_record
+    assert_nil record[:ADRNVN], 'Missing field should return nil'
+  end
+
   def init_protected_record
     CPRClient::Record.new Nokogiri::XML <<-DATA
       <?xml version="1.0" encoding="ISO-8859-1" standalone="yes"?>
