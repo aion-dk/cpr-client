@@ -9,7 +9,7 @@ Install
 
 You can install cpr-client via rubygems:
 
-    $ gem install carrierwave
+    $ gem install cpr-client
 
 Or add this to your Gemfile
 
