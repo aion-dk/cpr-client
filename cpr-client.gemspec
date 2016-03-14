@@ -8,7 +8,7 @@ Gem::Specification.new do |s|
   s.description = 'Client for making requests to the CPR registry (as a private company)'
   s.authors     = ['Michael Andersen']
   s.email       = 'michael@aion.dk'
-  s.homepage    = 'http://assemblyvoting.dk'
+  s.homepage    = 'https://github.com/aion-dk/cpr-client'
   s.files       = Dir.glob('lib/**/*') + %w(README.md)
   s.license     = 'MIT'
 
