@@ -1,8 +1,9 @@
 CPR Client
 ===
 
-A client for looking up people in the CPR registry (as a private company).
-It is backed by HTTPClient.
+A client for looking up people in the danish CPR registry.
+This cpr-client only supports requests allowed for private companies (STAMP).
+To use the CPR services, you must first get an agreement with [cpr.dk](https://cpr.dk/).
 
 Install
 -------

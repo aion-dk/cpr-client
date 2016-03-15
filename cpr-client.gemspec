@@ -5,7 +5,7 @@ Gem::Specification.new do |s|
   s.version     = CPRClient::VERSION
   s.date        = '2016-02-26'
   s.summary     = 'CPR Client'
-  s.description = 'Client for making requests to the CPR registry (as a private company)'
+  s.description = 'Client for making STAMP requests to the danish CPR registry (cpr.dk).'
   s.authors     = ['Michael Andersen']
   s.email       = 'michael@aion.dk'
   s.homepage    = 'https://github.com/aion-dk/cpr-client'
