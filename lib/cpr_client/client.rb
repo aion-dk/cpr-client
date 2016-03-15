@@ -15,10 +15,6 @@ module CPRClient
     # @param endpoint the full URI to the cpr gctp service
     def initialize(user, pass, endpoint)
       @user, @pass, @endpoint = user, pass, endpoint
-      @http = HTTPClient.new(
-          agent_name: "CPRClient/#{CPRClient::VERSION}",
-          default_header: { 'Content-Type' => 'text/xml' }
-      )
     end
 
     # Returns a Record object or nil if the record could not be found.
@@ -90,9 +86,19 @@ module CPRClient
     # @return a Nokogiri::XML object
     # @raise ClientError if the response status was not 200
     def post(body)
-      resp = @http.post(@endpoint, body)
+      resp = http.post(@endpoint, body)
       raise ClientError, 'Bad response' if resp.status != 200
       Nokogiri::XML(resp.body)
+    end
+
+    # Returns the underlying HTTPClient.
+    #
+    # @return a HTTPClient
+    def http
+      @http ||= HTTPClient.new(
+          agent_name: "CPRClient/#{CPRClient::VERSION}",
+          default_header: { 'Content-Type' => 'text/xml' }
+      )
     end
 
     private
