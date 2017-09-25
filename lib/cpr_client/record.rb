@@ -41,15 +41,30 @@ module CPRClient
     # The address will be a string of the fields
     # STADR, POSTNR and POSTNR's t attribute.
     #
-    # Fx. Boulevarden 101,1 mf, 6800 Varde
+    # Fx. Boulevarden 101, 1. mf, 6800 Varde
     #
     # @return string with address or nil
     def address
-      values = [ get(:stadr), get(:postnr), get(:postnr, :t) ]
-      '%s, %s %s' % values if values.all?
+      street_and_number = "#{get(:vejkod, :t)} #{get_clean(:husnr)}"
+      postal_district   = "#{get(:postnr)} #{get(:postnr, :t)}"
+      door  = get_clean(:sidedoer)
+      floor = get_clean(:etage)
+
+      if floor and door
+        "#{street_and_number}, #{floor}. #{door}, #{postal_district}"
+      elsif floor
+        "#{street_and_number}, #{floor}., #{postal_district}"
+      else
+        "#{street_and_number}, #{postal_district}"
+      end
     end
 
     private
+
+    def get_clean(name, value = 'v')
+      value = get(name, value)
+      value.sub(/^[ 0\-]*(.*?)\s*/, '\1') if value
+    end
 
     def extract_fields(xml_doc)
       Hash[xml_doc.css("Praes[r='STAMPNR'] Field").reduce([]) { |a, f|
