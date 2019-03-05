@@ -47,6 +47,16 @@ module CPRClient
       code == 900 or raise LoginError, code
     end
 
+    # Performs change of password.
+    #
+    # @return true
+    # @raise NewPasswordError if password change failed
+
+    def new_password(new_password)
+      code = receipt_code(post(new_password_body(new_password)))
+      code == 900 or raise NewPasswordError, code
+    end
+
     protected
 
     # Returns the gctp status code of the given xml_doc.
@@ -133,5 +143,15 @@ module CPRClient
       DATA
     end
 
+    def new_password_body(new_password)
+      <<-DATA
+      <?xml version="1.0" encoding="ISO-8859-1" standalone="yes"?>
+      <root xmlns="http://www.cpr.dk">
+        <Gctp v="1.0">
+          <Sik function="newpass" userid="#{@user}" password="#{@pass}" newpass1="#{new_password}"/>
+        </Gctp>
+      </root>
+      DATA
+    end
   end
 end
